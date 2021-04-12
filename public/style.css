@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap');
+*{
+   box-sizing: border-box;
+}
+
+h1{
+  background-color: white;
+  width:100%;
+  font-size:30px;
+}
+
+h2{
+  background-color: white;
+  width:100%;
+  font-size:20px;
+}
+h3
+{
+  background-color: white;
+  width:100%;
+  font-size:20px;
+}
+
+body {
+  background-color: #fbf0ff;
+  background-image: url("whited.jpg");
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size:140%;
+  font-family: 'Zilla Slab', serif;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  text-align: center;
+  font-size:15px;
+  
+}
+
+.h1{
+  background-color: white;
+}
+
+div.item {
+background-color:white;
+min-width: 100px;
+float: left;
+width: 40%;
+height: 450px;
+
+margin: 15px;
+padding: 15px;
+position: relative;
+border-radius: 10px;
+
+}
+
+#coloringsDataContainer div.item {
+  background-color: white;
+
+}
+
+#bookDataContainer div.item {
+  background-color: white ;
+}
+
+#coloringDataContainer {
+  display: none;
+}
+
+#bookDataContainer {
+  display: none;
+}
+
+#otherDataContainer{
+  display: none;
+}
+
+div.item button {
+background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  left:100%;
+ 
+}
+
+div.item button.edit {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  right:100%;
+}
+.edit {
+  transition-duration: 0.4s;
+}
+
+.edit:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+...
+
+span.item {
+line-height: 16px;
+font-size: 17px;
+}
+
+span.item b {
+ margin-right: 10px;
+}
+
+span.undefined {
+ color: red;
+}
+
+div.item button.submit {
+ background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  right:100%;
+}
