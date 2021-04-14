@@ -227,7 +227,7 @@ function displayData(data) {
 }
 var loadedData = [];
 
-function loadBookEditItem() {
+function loadEditItem() {
     localStorage = window.localStorage;
     editItem = JSON.parse(localStorage.getItem("editItem"));
     console.log(editItem);
