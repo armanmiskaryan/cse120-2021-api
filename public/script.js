@@ -270,7 +270,7 @@ function editData(id) {
         if ( item._id == item_id) {
             console.log(item); 
             localStorage = window.localStorage;
-            localStorage.setItem('BookeditItem', JSON.stringify(item));
+            localStorage.setItem('editItem', JSON.stringify(item));
             if (item["project"] == "myColoring") {
             document.location  = "coloring.html"; 
             } else {
