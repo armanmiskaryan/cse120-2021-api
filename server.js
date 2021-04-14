@@ -7,7 +7,7 @@ const { MongoClient } = require("mongodb");
 const ObjectId = require('mongodb').ObjectId; 
 
 const uri =
-  "mongodb+srv://cse120-2021-user:aua-gened-cse120@cse120-2021.zmhgf.mongodb.net/test";
+  "mongodb+srv://arman_miskaryan:Miskaryan4@cluster0.hha0n.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 const client = new MongoClient(uri);
 
@@ -57,6 +57,23 @@ app.post('/data', function (req, res) {
       .then(result => {
         console.log(result)
         res.send({"message":"Added"});
+      })
+      .catch(error => console.error(error))
+  })
+  .catch(console.error)
+})
+
+app.post('/data/update', function (req, res) {
+   //ToDo: Please replace this with Edit/Update code
+  client.connect()
+  .then(client => {
+    let id = req.body.id;
+    let newValue = req.body.value;
+    const query = { "_id": ObjectId(id)};
+    client.db('cse120-2021-db').collection('books').update(query,{$set: req.body})
+      .then(result => {
+        console.log(result)
+        res.send({"message":"Updated"});
       })
       .catch(error => console.error(error))
   })
