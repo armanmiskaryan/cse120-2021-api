@@ -356,7 +356,7 @@ function loadExistingData() {
         })
         displayData(myColoringData, "coloringDataContainer");
         displayData(myBookData, "bookDataContainer");
-        displayData(otherData, "otherDataContainer");
+     
       },
       error : function(data) {
           console.log("Error")
@@ -484,3 +484,35 @@ function updateData(e) {
       }
     });
   }
+function UpdateColoringData(e) {
+  e.preventDefault();
+  var updatedTennis = {};
+  updatedColoring.id = document.getElementById("_id").value;
+  updatedColoring.fullname = document.getElementById("fullname").value;
+  updatedColoring.country = document.getElementById("country").value;
+  updatedColoring.date = document.getElementById("date").value;
+  updatedColoring.gender = document.getElementById("gender").value;
+  updatedColoring.color = document.getElementById("color").value;
+  updatedColoring.colorw = document.getElementById("colorw").value;
+  updatedColoring.booknum = document.getElementById("booknum").value;
+  updatedColoring.favartist = document.getElementById("favartist").value;
+  updatedColoring.adults = document.getElementById("adults").value;
+  
+	
+      $.ajax({
+      type: 'POST',
+      url: "/data/update",
+      data: updatedColoring,
+      cache: false,
+      dataType : 'json',
+      success: function (data) {
+        console.log("success");
+      },
+      error: function (xhr) {
+        console.error("Error in post", xhr);
+      },
+      complete: function () {
+        console.log("Complete");  
+      }
+    });
+}
