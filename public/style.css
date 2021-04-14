@@ -217,3 +217,39 @@ span.undefined {
 color: red;
 }
 
+.spanitems{
+ background-color: #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+  background-color: rgb(53, 131, 111); /* Fallback color */
+  background-color: rgba(169, 187, 154, 0.884);  /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  padding:30px;
+  text-align: center;
+}
+
+.heading{
+  background-color: #fff;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+background-color: rgb(19, 46, 20); /* Fallback color */
+background-color: rgba(54, 66, 43, 0.884); /* Black w/opacity/see-through */
+  color: white;
+  display: block;
+  font-weight: bold;
+width:100%;
+  z-index: 2;
+  padding: 20px;
+  text-align: center;
+}
+.colspan{
+  background-color: #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+  background-color: rgb(53, 131, 111); /* Fallback color */
+  background-color: rgba(169, 187, 154, 0.884);  /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  padding:30px;
+  text-align: center;
+}
