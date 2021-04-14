@@ -448,27 +448,24 @@ function toggleBookData() {
 function updateData(e) {
   e.preventDefault();
   var updatedBook = {};
-  updatedBook.id = document.getElementById("_idBook").value;
-  updatedBook.fullname = document.getElementById("fullnameBook").value;
+  updatedBook.id = document.getElementById("_id").value;
+  updatedBook.fullname = document.getElementById("fullname").value;
   updatedBook.title = document.getElementById("title").value;
-  updatedBook.author = document.getElementById("authorBook").value;
-  updatedBook.colour = document.getElementById("colourBook").value;
-  updatedBook.covertype = document.getElementById("covertypeBook").value;
-  updatedBook.numberofpages = document.getElementById("numberofpagesBook").value;
-  updatedBook.price = document.getElementById("priceBook").value;
-  updatedBook.currency = document.getElementById("currencyBook").value;
-  updatedBook.language = document.getElementById("languageBook").value;
-  updatedBook.edition = document.getElementById("editionBook").value;
-  updatedBook.dimensions = document.getElementById("dimensionsBook").value;
-  updatedBook.publisher = document.getElementById("publisherBook").value;
-  updatedBook.publishingyear = document.getElementById("publishingyearBook").value;
-  updatedBook.originalpubdate = document.getElementById("originalpubdateBook").value;
-  updatedBook.genre = document.getElementById("genreBook").value;
+  updatedBook.author = document.getElementById("author").value;
+  updatedBook.colour = document.getElementById("colour").value;
+  updatedBook.covertype = document.getElementById("covertype").value;
+  updatedBook.numberofpages = document.getElementById("numberofpages").value;
+  updatedBook.price = document.getElementById("price").value;
+  updatedBook.currency = document.getElementById("currency").value;
+  updatedBook.language = document.getElementById("language").value;
+  updatedBook.edition = document.getElementById("edition").value;
+  updatedBook.dimensions = document.getElementById("dimensions").value;
+  updatedBook.publisher = document.getElementById("publisher").value;
+  updatedBook.publishingyear = document.getElementById("publishingyear").value;
+  updatedBook.originalpubdate = document.getElementById("originalpubdate").value;
+  updatedBook.genre = document.getElementById("genre").value;
   
-  if(validateFormData() == false){
-    return;
-  }else{
-    console.log(myBook);
+ 
 
       $.ajax({
       type: 'POST',
@@ -487,4 +484,3 @@ function updateData(e) {
       }
     });
   }
-}
