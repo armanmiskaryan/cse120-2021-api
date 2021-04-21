@@ -69,7 +69,7 @@ function deleteData(id) {
 
     $.ajax({
         type: 'POST',
-        url: "https://cse120-2021api-arman .herokuapp.com/data/delete",
+        url: "https://cse120-2021-api-arman.herokuapp.com/data/delete",
         data: tmp,
         cache: false,
         dataType : 'json',
@@ -93,7 +93,7 @@ function saveData() {
 
   $.ajax({
       type: 'POST',
-      url: "https://cse120-2021api-arman .herokuapp.com/data",
+      url: "https://cse120-2021-api-arman.herokuapp.com/data",
       data: tmp,
       cache: false,
       dataType : 'json',
@@ -115,7 +115,7 @@ function loadExistingData() {
   otherData = [];
   $.ajax({
       type : "GET",
-      url : "https://cse120-2021api-arman .herokuapp.com/data",
+      url : "https://cse120-2021-api-arman.herokuapp.com/data",
       dataType : "json",
       success : function(data) {
         loadedData = data.data;
@@ -250,7 +250,7 @@ function updateData(e) {
     console.log(myBook);
       $.ajax({
       type: 'POST',
-      url: "https://cse120-2021api-arman.herokuapp.com/data/update",
+      url: "https://cse120-2021-api-arman.herokuapp.com/data/update",
       data: updatedBook,
       cache: false,
       dataType : 'json',
