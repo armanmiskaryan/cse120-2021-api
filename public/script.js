@@ -112,7 +112,7 @@ function deleteData(id) {
 
     $.ajax({
         type: 'POST',
-        url: "https://cse120-2021api-anzhela.herokuapp.com/data/delete",
+        url: "https://cse120-2021-api-arman.herokuapp.com/data/delete",
         data: tmp,
         cache: false,
         dataType : 'json',
@@ -336,7 +336,7 @@ function loadExistingData() {
       success : function(data) {
         loadedData = data.data;
         data.data.forEach(elem => {
-          if (elem["owner"] == "Anzhela Petrosyan") {
+          if (elem["owner"] == "Arman Miskaryan") {
             if (elem["project"] == "myVolleyball") {
               myVolleyballData.push(elem);
             } else {
@@ -421,11 +421,11 @@ function toggleOtherData() {
 }
 
 function toggleVolleyballData() {
-  var volleyballData = document.getElementById("volleyballDataContainer");
-  if (volleyballData.style.display == "block") {
-    volleyballData.style.display = "none";
+  var myVolleyballData = document.getElementById("volleyballDataContainer");
+  if (myvolleyballData.style.display == "block") {
+    myVolleyballData.style.display = "none";
   } else {
-    volleyballData.style.display = "block";
+    myVolleyballData.style.display = "block";
   }
 }
 
@@ -477,19 +477,16 @@ function updateData(e) {
   }
 function UpdateVolleyballData(e) {
   e.preventDefault();
-  var updatedTennis = {};
+  var updatedVolleyball = {};
   updatedVolleyball.id = document.getElementById("_id").value;
   updatedVolleyball.fullname = document.getElementById("fullname").value;
   updatedVolleyball.country = document.getElementById("country").value;
-  updatedVolleyball.date = document.getElementById("date").value;
   updatedVolleyball.gender = document.getElementById("gender").value;
-  updatedVolleyball.color = document.getElementById("color").value;
+  updatedVolleyball.prefferedteam = document.getElementById("prefferedteam").value;
+   updatedVolleyball.player = document.getElementById("player").value;
   updatedVolleyball.colorw = document.getElementById("colorw").value;
-  updatedVolleyball.booknum = document.getElementById("booknum").value;
-  updatedVolleyball.favartist = document.getElementById("favartist").value;
-  updatedVolleyball.adults = document.getElementById("adults").value;
+  updatedVolleyball.years = document.getElementById("years").value;
   
-	
       $.ajax({
       type: 'POST',
       url: "/data/update",
