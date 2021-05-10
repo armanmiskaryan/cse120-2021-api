@@ -1,125 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 
-*{
-   box-sizing: border-box;
+
+* {
+	box-sizing: border-box;
 }
+
 body {
- font-family: 'Zilla Slab', serif;
+	background-color: #4b8863;
+	font-family: 'Montserrat', sans-serif;
+	display: flex;
 	align-items: center;
 	justify-content: center;
-  background-color: #ecdefd;
-  font-size:18px;
+	margin: 0;
 }
 
 .container {
-  background-color: #fff;
+	background-color: #fff;
+	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 	overflow: hidden;
-  box-shadow: 0 2px 5px rgba(226, 195, 247, 0.3);
-	overflow: hidden;
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(255, 255, 255, 0.884);  /* Black w/opacity/see-through */
-  position:relative;
-  top: 50%;
-  left: 5%;
-  transform: translate(-5%, -5%);
-  z-index: 2;
-  padding: 20px;
-  border-radius: 25px;
-  text-align: center;
-}
-.form {
-  padding: 70px 70px;
+	width: 400px;
+	max-width: 100%;
 }
 
+.header {
+	border-bottom: 1px solid #f0f0f0;
+	background-color: #f7f7f7;
+	padding: 20px 40px;
+}
+
+.header h2 {
+	margin: 0;
+}
+
+.form {
+	padding: 30px 40px;	
+}
 .form-control {
-  background-color: #fff;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-	overflow: hidden;
-  box-shadow: 0 2px 5px rgba(226, 195, 247, 0.3);
-	overflow: hidden;
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(255, 255, 255, 0.884);  /* Black w/opacity/see-through */
-  color: black;
-  position:relative;
-  top: 50%;
-  left: 5%;
-  transform: translate(-5%, -5%);
-  z-index: 2;
-  padding: 20px;
-  border-radius: 25px;
-  text-align: center;
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+	position: relative;
 }
-.form-group {
-  background-color: #fff;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-	overflow: hidden;
-  box-shadow: 0 2px 5px rgba(226, 195, 247, 0.3);
-	overflow: hidden;
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(255, 255, 255, 0.884);  /* Black w/opacity/see-through */
-  color: black;
-  position:relative;
-  top: 50%;
-  left: 5%;
-  transform: translate(-5%, -5%);
-  z-index: 2;
-  padding: 20px;
-  border-radius: 25px;
-  text-align: center;
-}
+
+
 .form-control label {
 	display: inline-block;
 	margin-bottom: 5px;
 }
-
 .form-control input {
 	border: 2px solid #f0f0f0;
-  border-radius: 4px;
-  border-radius: 30px;
-	font-family: inherit;
+	border-radius: 15px;
 	font-size: 14px;
-	
 }
+
+
 .form button {
-	background-color:rgba(89, 5, 122, 0.884) ;
+	background-color:  #4b8863;
+	border: 2px solid  #4b8863;
+	border-radius: 4px;
 	color: #fff;
-	font-size: 19px;
-	padding:5px;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
 	margin-top: 20px;
 	width: 100%;
-  border-radius: 25px;
 }
 
 
-*{
-   box-sizing: border-box;
-}
-
-h1{
-  color:black;
-  position: relative;
-  padding: 20px;
-  text-align: center;
-}
-
-
-.header1{
-background-color: #fff;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-background-color: rgb(19, 46, 20); /* Fallback color */
-background-color: white; /* Black w/opacity/see-through */
-  color: black;
-  display: block;
-  font-weight: bold;
-  position:relative;
-  border-radius:25px;
-  top: 50%;
-  left: 5%;
-  transform: translate(-5%, -5%);
-  z-index: 2;
-  padding: 20px;
-  text-align: center;
-}
 
 div.item {
 background-color: #fff;
@@ -140,7 +88,7 @@ background-color: rgba(231, 221, 245, 0.884); /* Black w/opacity/see-through */
   margin:20px;
 }
 
-#coloringsDataContainer div.item {
+#volleyballDataContainer div.item {
   background-color:rgba(231, 221, 245, 0.884);
   margin: 70px; 
 }
@@ -151,7 +99,7 @@ background-color: rgba(231, 221, 245, 0.884); /* Black w/opacity/see-through */
 
 }
 
-#coloringDataContainer {
+#volleyballDataContainer {
   display: none;
   margin: 40px;
 }
