@@ -69,24 +69,6 @@ body {
 
 
 
-div.item {
-background-color: #fff;
-border-radius: 20px;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-background-color: rgb(19, 46, 20); /* Fallback color */
-background-color: rgba(231, 221, 245, 0.884); /* Black w/opacity/see-through */
-  color: rgba(54, 21, 82, 0.897);
-  display: block;
-  font-weight: bold;
-  position:relative;
-  top: 50%;
-  left: 5%;
-  transform: translate(-5%, -5%);
-  z-index: 2;
-  padding: 20px;
-  text-align: center;
-  margin:20px;
-}
 
 #volleyballDataContainer div.item {
   background-color:rgba(231, 221, 245, 0.884);
