@@ -8,10 +8,8 @@
 body {
 	background-color: #4b8863;
 	font-family: 'Montserrat', sans-serif;
-	display: block;
+	display: flex;
 	align-items: center;
-	justify-content: center;
-	margin: 0;
 }
 
 .container {
