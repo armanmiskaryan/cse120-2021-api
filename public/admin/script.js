@@ -653,7 +653,7 @@ function updateData(e) {
       }
     });
   }
-function UpdateVolleyballData(e) {
+function updateVolleyballData(e) {
   e.preventDefault();
   var updatedVolleyball = {};
   updatedVolleyball.id = document.getElementById("_id").value;
