@@ -1,1 +1,94 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> My Volleyball Questionnaire </title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+     <script src="https://code.jquery.com/jquery-3.5.1.min.js"	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> 
+  </head>
+  <body>
+    <div class="bg-image"></div>
+    <div class="container">
+      <div class="header">
+        <h1> My Volleyball Questionnaire </h1>
+      </div>
+     </div>
+      <form class="form" id="form">
+       <div class="form-control">
+         <label> Full Name </label>
+           <br>
+         <input type="text" placeholder="Arman Miskaryan" id="fullname" onchange="handleFullNameChange(event)" required>
+       </div>
+       <br>
+       <div class="form-control">
+         <label>Country</label>
+         <br>
+         <input type="text" placeholder="Armenia" id="country" onchange="handleCountryChange(event)" required>
+         <br>
+       </div>
+       <br>
+       <div class="form-group">
+            <label for="Gender"> Gender </label>
+            <br>
+          <input type=radio name='option' value='Female' id="gender" onchange="handleGenderChange(event)" required>
+          Female</label>
+          <br>
+          <input type='radio' name='option' value='Male'id="gender" required>
+          Male</label>
+          <br>
+          <br>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="prefferedteam">Which volleyball team do you prefer? </label>
+            <br>
+          <input type=radio name='option' value='Zenit' id="prefferedteam" onchange="handlePrefferedteamChange(event)" required>
+          Zenit</label>
+          <br>
+          <input type='radio' name='option' value='Lube'id="prefferedteam" onchange="handlePrefferedteamChange(event)" required>
+          Lube</label>
+          <br>
+          <input type=radio name='option' value='Dinamo' id="prefferedteam" onchange="handlePrefferedteamChange(event)" required>
+          Dinamo</label>
+          <br>
+        </div>
+        <br>
+      <div class="form-control">
+         <label>Who is your favorite volleyball player?</label>
+         <br>
+         <input type="text" id="player" onchange="handlePlayerChange(event)" required>
+       </div>
+       <br>
+       <div class="form-control">
+         <label>Which of the following are the two colors of the game's ball? </label>
+          <input type="checkbox" id="colorw" name="color1" value="bluegreen" onchange="handleColorwChange(event)">
+          <label for="color1"> Blue and Green </label> 
+          <br>
+          <input type="checkbox" id="colorw" name="color2" value="blackwhite" onchange="handleColorwChange(event)">
+          <label for="color2"> Black and white </label>
+          <br>
+          <input type="checkbox" id="colorw" name="color3" value="white" onchange="handleColorwChange(event)"> 
+          <label for="color3"> White only </label>
+          <br>
+          <input type="checkbox" id="colorw" name="color4" value="yellowblue" onchange="handleColorwChange(event)"> 
+          <label for="color4"> Yellow and Blue </label>
+          <br>
+          <input type="checkbox" id="colorw" name="color5" value="yellow" onchange="handleColorwChange(event)"> 
+          <label for="color5"> Yellow only </label>
+          <br>
+       </div>
+       <br>
+       <div class="form-control">
+         <label for "years"> For how many years have you been playing volleyball?</label>
+         <br>
+         <br>
+         <input type="number" placeholder="400" id = "years" onchange="handleYearsChange(event)" required> 
+       </div>
+       <br>
+         <button id="Submit" onclick="SaveData(event)">Submit</button>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
