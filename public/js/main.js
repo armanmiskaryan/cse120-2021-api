@@ -1,17 +1,43 @@
 
 var loadedData = [];
 
-function loadEditItem() {
+function loadBookEditItem() {
     localStorage = window.localStorage;
     editItem = JSON.parse(localStorage.getItem("editItem"));
     console.log(editItem);
     document.getElementById("_id").innerHTML = editItem["_id"];
-    document.getElementById("title").value = editItem["title"];
-    document.getElementById("fullname").value = editItem["fullName"];   
+    document.getElementById("fullname").value = editItem["fullName"];
+    document.getElementById("title").value = editItem["title"]; 
     document.getElementById("author").value = editItem["author"];   
-    document.getElementById("pages").value = editItem["noOfPgs"];
+    document.getElementById("colour").value = editItem["colour"];
+    document.getElementById("covertype").value = editItem["covertype"];
+    document.getElementById("pagenumber").value = editItem["pagenumber"];
+    document.getElementById("price").value = editItem["price"];
+    document.getElementById("currency").value = editItem["currency"];
+    document.getElementById("language").value = editItem["language"];
+    document.getElementById("orglanguage").value = editItem["orglanguage"];
+    document.getElementById("otherlanguage").value = editItem["otherlanguage"];
+    document.getElementById("edition").value = editItem["edition"];
+    document.getElementById("dimensions").value = editItem["dimensions"];
+    document.getElementById("publisher").value = editItem["publisher"];
+    document.getElementById("pubdate").value = editItem["pubdate"];
+    document.getElementById("age").value = editItem["age"];
+    document.getElementById("orgpubdate").value = editItem["orgpubdate"];
+    document.getElementById("genre").value = editItem["genre"];
 }
-
+function loadVolleyballEditItem() {
+    localStorage = window.localStorage;
+    editItem = JSON.parse(localStorage.getItem("editItem"));
+    console.log(editItem);
+    document.getElementById("_id").value = editItem["_id"];
+    document.getElementById("fullname").value = editItem["fullname"];
+    document.getElementById("country").value = editItem["country"]; 
+    document.getElementById("gender").value = editItem["gender"];
+    document.getElementById("prefferedteam").value = editItem["prefferedteam"];
+    document.getElementById("player").value = editItem["player"];      
+    document.getElementById("colorw").value = editItem["colorw"];
+    document.getElementById("years").value = editItem["years"];
+}
 function editData(id) {
     var tmp = id.split("edit_");
     var item_id = tmp[1];
@@ -39,7 +65,7 @@ function deleteData(id) {
 
     $.ajax({
         type: 'POST',
-        url: "https://cse120-2021-api.herokuapp.com/data/delete",
+        url: "https:///cse120-2021-api-arman.herokuapp.com/data/delete",
         data: tmp,
         cache: false,
         dataType : 'json',
@@ -63,7 +89,7 @@ function saveData() {
 
     $.ajax({
         type: 'POST',
-        url: "https://cse120-2021-api.herokuapp.com/data",
+        url: "https:///cse120-2021-api-arman.herokuapp.com/data",
         data: tmp,
         cache: false,
         dataType : 'json',
@@ -82,7 +108,7 @@ function saveData() {
 function loadExistingData() {
     $.ajax({
         type : "GET",
-        url : "https://cse120-2021-api.herokuapp.com/data",
+        url : "https:///cse120-2021-api-arman.herokuapp.com/data",
         dataType : "json",
         success : function(data) {
         	console.log("success", data);
