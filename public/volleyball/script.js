@@ -168,7 +168,7 @@ function loadExistingData() {
 }
 
 function displayData(data) {
-    document.getElementById("dataContainer").innerHTML = "";
+    document.getElementById("volleyballDataContainer").innerHTML = "";
     data.forEach(elem => {
 
     var item = document.createElement("div");
@@ -210,7 +210,7 @@ function displayData(data) {
           deleteData(e.target.id);
         }, false);
         item.appendChild(button);
-        document.getElementById("dataContainer").appendChild(item);
+        document.getElementById("volleyballDataContainer").appendChild(item);
     })
 
 }
