@@ -250,9 +250,9 @@ var myhobby={
               localStorage = window.localStorage;
               localStorage.setItem('editItem', JSON.stringify(item));
               if (item["project"] == "myhobby") {
-              document.location  = "volleyball.html"; 
+              document.location  = "edit_volleyball.html"; 
               } else {
-              document.location  = "book.html"; 
+              document.location  = "edit_book.html"; 
               }
           }
       })
