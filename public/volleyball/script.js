@@ -1,306 +1,124 @@
-var myhobby={
-    "project":"myhobby",
-    "owner": "Arman Miskaryan",
-    "fullname": "",
-    "country": "",
-    "date":"",
-    "gender": "",
-    "player" : "",
-    "years":"", 
+var hobby={
+  "project":"myVolleyball",
+  "owner": "Arman Miskaryan",
+  "fullname": "",
+  "country": "",
+  "gender": "",
+  "prefferedteam" : "", 
+  "player" : "",
+  "colorw" : "",
+  "years" : "",
+}
+function Validatecurrentvalue(){
+  var currentvalue=document.getElementById("fullname").value;
+  console.log("Eventcall;", currentvalue.length)
+  if (currentvalue.length > 10){
+   document.getElementById("fullnameerror").innerHTML="Bad";
+  } else{
+    document.getElementById("fullnameerror").innerHTML="Good";
   }
-  function Validatecurrentvalue(){
-    var currentvalue=document.getElementById("fullname").value;
-    console.log("Eventcall;", currentvalue.length)
-    if (currentvalue.length > 10){
-     document.getElementById("fullnameerror").innerHTML="Bad";
-    } else{
-      document.getElementById("fullnameerror").innerHTML="Good";
-    }
+}
+
+function handleFullNameChange(){
+  hobby.fullname=document.getElementById("fullname").value;
+}
+function handleCountryChange(){
+ hobby.country=document.getElementById("country").value;
+}
+
+ function handleGenderChange(){
+   hobby.gender=document.getElementById("gender").value;
+ }
+function handlePrefferedteamChange () {
+  hobby.color=document.getElementById("prefferedteam").value;
+ }
+function handlePlayerChange () {
+  hobby.player=document.getElementById("player").value;
+ } 
+ function handleColorwChange () {
+  hobby.colorw=document.getElementById("colorw").value;
+ }
+
+function handleYearsChange(){
+ hobby.years=document.getElementById("years").value;
+
+}
+function handleCheckboxChange(e) {
+  var value = e.target.id;
+  if (e.target.value == "on") {
+    hobby.colorw = hobby.colorw + "," + value;
   }
-  function handleFullNameChange(){
-   myhobby.fullname=document.getElementById("fullname").value;
-  }
+}
+function SaveData(e) {
+  e.preventDefault();
+  console.log("The current value is",hobby)
   
-  function handleCountryChange(){
-   myhobby.country=document.getElementById("country").value;
-  }
-   function handleDateChange(){
-   myhobby.date=document.getElementById("date").value;
-  }
-   function handleGenderChange(){
-     myhobby.gender=document.getElementById("gender").value;
-   }
-  function handlePlayerChange () {
-     myhobby.color=document.getElementById("player").value;
-   }
-   function handleCheckboxChange(e) {
-    var value = e.target.id;
-    if (e.target.value == "on") {
-      myhobby.player = myhobby.player + "," + value;
+  $.ajax({
+    type: 'POST',
+    url: "https://cse120-2021-api-arman.herokuapp.com/data",
+    data: hobby,
+    cache: false,
+    dataType : 'json',
+    success: function (data) {
+      console.log("success");
+    },
+    error: function (xhr) {
+      console.error("Error in post", xhr);
+    },
+    complete: function () {
+      console.log("Complete");  
     }
+  });
+}
+
+function loadExistingData() {
+	var existingData = [];
+  $.ajax({
+    type : "GET",
+    url : "https://cse120-2021-api-arman.herokuapp.com/data",
+    dataType : "json",
+    success : function(data) {
+      console.log("success", data);
+      existingData = data;
+      displayData(existingData.data);
+    },
+    error : function(data) {
+        console.log("Error")
+    }
+  });
+}
+
+function displayData(existingData) {
+  document.getElementById("existingData").innerHTML = "<ul>";
+  for (var i = 0; i < existingData.length; i++) {
+    currentBook = existingData[i];
+    document.getElementById("existingData").innerHTML += "<li><i>" + currentBook.fullname + "</li> : <b>" + currentBook.title + "</b></li>";
   }
-   function handleYearsChange () {
-      myhobby.years=document.getElementById("years").value;
-   }
-  function SaveData(e) {
-    e.preventDefault();
-    console.log("The current value is", favhobby)
+  document.getElementById("existingData").innerHTML += "</ul>"
+}
     
-    $.ajax({
-      type: 'POST',
-      url: "https://cse120-2021-api-arman.herokuapp.com/data",
-      data: myhobby,
-      cache: false,
-      dataType : 'json',
-      success: function (data) {
-        console.log("success");
-      },
-      error: function (xhr) {
-        console.error("Error in post", xhr);
-      },
-      complete: function () {
-        console.log("Complete");  
-      }
-    });
-  }
-  
-  function loadExistingData() {
-      var existingData = [];
-    $.ajax({
-      type : "GET",
-      url : "https://cse120-2021-api-arman.herokuapp.com/data",
-      dataType : "json",
-      success : function(data) {
-        console.log("success", data);
-        existingData = data;
-        displayData(existingData.data);
-      },
-      error : function(data) {
-          console.log("Error")
-      }
-    });
-  }
-  
-  function displayData(existingData) {
-    document.getElementById("existingData").innerHTML = "<ul>";
-    for (var i = 0; i < existingData.length; i++) {
-      currentBook = existingData[i];
-      document.getElementById("existingData").innerHTML += "<li><i>" + currentBook.fullname + "</li> : <b>" + currentBook.title + "</b></li>";
-    }
-    document.getElementById("existingData").innerHTML += "</ul>"
-  }
+function deleteData(id) {
+
+    var r = confirm("Are you sure you want to delete the item with the following ID? " + id);
+    if (r == true) {
       
-  function deleteData(id) {
-  
-      var r = confirm("Are you sure you want to delete the item with the following ID? " + id);
-      if (r == true) {
-        
-      } else {
-        return;
-      }
-  
-      var tmp = {
-          "id": id
-      }
-  
-      $.ajax({
-          type: 'POST',
-          url: "https://cse120-2021-api-arman.herokuapp.com/data/delete",
-          data: tmp,
-          cache: false,
-          dataType : 'json',
-          success: function (data) {
-              console.log("success");
-              document.getElementById("div" + id).style.display = "none";
-          },
-          error: function (xhr) {
-              console.error("Error in post", xhr);
-          },
-          complete: function () {
-              console.log("Complete");  
-          }
-      });
-  }
-  function saveData() {
-      var tmp = {
-          "test": "Data"
-      }
-  
-      $.ajax({
-          type: 'POST',
-          url: "https://cse120-2021-api-arman.herokuapp.com/data",
-          data: tmp,
-          cache: false,
-          dataType : 'json',
-          success: function (data) {
-              console.log("success");
-          },
-          error: function (xhr) {
-              console.error("Error in post", xhr);
-          },
-          complete: function () {
-              console.log("Complete");  
-          }
-      });
-  }
-  
-  function loadExistingData() {
-      $.ajax({
-          type : "GET",
-          url : "https://cse120-2021-api-arman.herokuapp.com/data",
-          dataType : "json",
-          success : function(data) {
-              console.log("success", data);
-              displayData(data.data);
-          },
-          error : function(data) {
-              console.log("Error")
-          }
-      });
-  }
-  
-  function displayData(data) {
-      document.getElementById("dataContainer").innerHTML = "";
-      data.forEach(elem => {
-  
-      var item = document.createElement("div");
-          item.id = "div" + elem["_id"];
-          item.className = "item";
-      if (Object.keys(elem).length == 1) {
-      var span = document.createElement("span");
-          span.innerHTML = "<i>Empty Element with autogenerated ID: </i>" + elem["_id"];
-          item.appendChild(span);
-          }
-      Object.keys(elem).forEach(key => {
-        if (key != "_id") {
-        var span = document.createElement("span");
-  
-        var b = document.createElement("b");
-            b.innerHTML = key + ": ";
-            span.appendChild(b);
-                  
-            span.className = "item";
-        if (elem[key]) {
-            span.innerHTML += elem[key];
-        } else {
-          
-        var span1 = document.createElement("span");
-            span1.className = "undefined";
-            span1.innerHTML = "N/A";
-            span.appendChild(span1)
-                  }
-            item.appendChild(span);
-  
-        var br = document.createElement("br");
-            item.appendChild(br);
-              }
-          })
-        var button = document.createElement("button");
-          button.innerHTML = "Delete";
-          button.id = elem["_id"];
-          button.addEventListener("click", function(e){
-            deleteData(e.target.id);
-          }, false);
-          item.appendChild(button);
-          document.getElementById("dataContainer").appendChild(item);
-      })
-  
-  }
-  var loadedData = [];
-  
-  function loadBookEditItem() {
-      localStorage = window.localStorage;
-      editItem = JSON.parse(localStorage.getItem("editItem"));
-      console.log(editItem);
-      document.getElementById("_id").innerHTML = editItem["_id"];
-      document.getElementById("fullname").value = editItem["fullname"];   
-      document.getElementById("title").value = editItem["title"];
-      document.getElementById("author").value = editItem["author"];  
-      document.getElementById("color").value = editItem["color"];
-      document.getElementById("covertype").value = editItem["covertype"];
-      document.getElementById("pages").value = editItem["pages"];
-      document.getElementById("price").value = editItem["price"];
-      document.getElementById("currency").value = editItem["currency"];
-      document.getElementById("language").value = editItem["language"];
-      document.getElementById("edition").value = editItem["edition"];
-      document.getElementById("publisher").value = editItem["publisher"];
-      document.getElementById("pubdate").value = editItem["pubdate"];
-      document.getElementById("genre").value = editItem["genre"];
-  }
-  function loadVolleyballEditItem() {
-      localStorage = window.localStorage;
-      editItem = JSON.parse(localStorage.getItem("editItem"));
-      console.log(editItem);
-      document.getElementById("_id").value = editItem["_id"];
-      document.getElementById("fullname").value = editItem["fullname"];
-      document.getElementById("country").value = editItem["country"]; 
-      document.getElementById("date").value = editItem["date"];
-      document.getElementById("gender").value = editItem["gender"];
-      document.getElementById("player").value = editItem["player"];
-      document.getElementById("years").value = editItem["years"];          
-  }
-  
-  function editData(id) {
-      var tmp = id.split("edit_");
-      var item_id = tmp[1];
-  
-      loadedData.forEach(item => {
-          if ( item._id == item_id) {
-              console.log(item); 
-              localStorage = window.localStorage;
-              localStorage.setItem('editItem', JSON.stringify(item));
-              if (item["project"] == "myhobby") {
-              document.location  = "edit_volleyball.html"; 
-              } else {
-              document.location  = "edit_book.html"; 
-              }
-          }
-      })
-  }
-  
-  function deleteData(id) {
-  
-      var r = confirm("Are you sure you want to delete the item with the following ID? " + id);
-      if (r == false) {
-          return;
-      }
-  
-      var tmp = {
-          "id": id
-      }
-  
-      $.ajax({
-          type: 'POST',
-          url: "https://cse120-2021-api-arman.herokuapp.com/data/delete",
-          data: tmp,
-          cache: false,
-          dataType : 'json',
-          success: function (data) {
-              console.log("success");
-              document.getElementById("div" + id).style.display = "none";
-          },
-          error: function (xhr) {
-              console.error("Error in post", xhr);
-          },
-          complete: function () {
-              console.log("Complete");  
-          }
-      });
-  }
-  
-  function saveData() {
-      var tmp = {
-          "test": "Data"
-      }
-  
+    } else {
+      return;
+    }
+
+    var tmp = {
+        "id": id
+    }
+
     $.ajax({
         type: 'POST',
-        url: "https://cse120-2021-api-arman.herokuapp.com/data",
+        url: "https://cse120-2021-api-arman.herokuapp.com/data/delete",
         data: tmp,
         cache: false,
         dataType : 'json',
         success: function (data) {
-          console.log("success");
+            console.log("success");
+            document.getElementById("div" + id).style.display = "none";
         },
         error: function (xhr) {
             console.error("Error in post", xhr);
@@ -309,166 +127,341 @@ var myhobby={
             console.log("Complete");  
         }
     });
-  }
-  
-  function loadExistingData() {
-    myhobbyData = [];
-    mybookData = [];
-    otherData = [];
+}
+
+function saveData() {
+	var tmp = {
+		"test": "Data"
+	}
+
+    $.ajax({
+        type: 'POST',
+        url: "https://cse120-2021-api-arman.herokuapp.com/data",
+        data: tmp,
+        cache: false,
+        dataType : 'json',
+        success: function (data) {
+        	console.log("success");
+        },
+        error: function (xhr) {
+            console.error("Error in post", xhr);
+        },
+        complete: function () {
+            console.log("Complete");  
+        }
+    });
+}
+
+function loadExistingData() {
     $.ajax({
         type : "GET",
         url : "https://cse120-2021-api-arman.herokuapp.com/data",
         dataType : "json",
         success : function(data) {
-          loadedData = data.data;
-          data.data.forEach(elem => {
-            if (elem["owner"] == "Arman Miskaryan") {
-              if (elem["project"] == "myhobby") {
-                myhobbyData.push(elem);
-              } else {
-                mybookData.push(elem);
-              }
-            } else {
-              otherData.push(elem);
-            }
-          })
-          displayData(myhobbyData, "hobbyDataContainer");
-          displayData(mybookData, "bookDataContainer");
-          displayData(otherData, "otherDataContainer");
+        	console.log("success", data);
+            displayData(data.data);
         },
         error : function(data) {
             console.log("Error")
         }
     });
-  }
-  
-  function displayData(data, containerDivName) {
-    document.getElementById(containerDivName).innerHTML = "";
+}
+
+function displayData(data) {
+    document.getElementById("dataContainer").innerHTML = "";
     data.forEach(elem => {
-      var item = document.createElement("div");
-      item.id = "div" + elem["_id"];
-      item.className = "item";
-      if (Object.keys(elem).length == 1) {
-        var span = document.createElement("span");
+
+    var item = document.createElement("div");
+        item.id = "div" + elem["_id"];
+        item.className = "item";
+    if (Object.keys(elem).length == 1) {
+    var span = document.createElement("span");
         span.innerHTML = "<i>Empty Element with autogenerated ID: </i>" + elem["_id"];
         item.appendChild(span);
-      }
-      Object.keys(elem).forEach(key => {
-        if (key != "_id") {
-          var span = document.createElement("span");
-  
-          var b = document.createElement("b");
+        }
+    Object.keys(elem).forEach(key => {
+      if (key != "_id") {
+      var span = document.createElement("span");
+
+      var b = document.createElement("b");
           b.innerHTML = key + ": ";
           span.appendChild(b);
-          
+                
           span.className = "item";
-          if (elem[key]) {
-              span.innerHTML += elem[key];
-          } else {
-              var span1 = document.createElement("span");
-              span1.className = "undefined";
-              span1.innerHTML = "N/A";
-              span.appendChild(span1)
-          }
+      if (elem[key]) {
+          span.innerHTML += elem[key];
+      } else {
+        
+      var span1 = document.createElement("span");
+          span1.className = "undefined";
+          span1.innerHTML = "N/A";
+          span.appendChild(span1)
+                }
           item.appendChild(span);
-  
-          var br = document.createElement("br");
+
+      var br = document.createElement("br");
           item.appendChild(br);
-        }
-      })
-      var edit_button = document.createElement("button");
-      edit_button.innerHTML = "Edit";
-      edit_button.id = "edit_" + elem["_id"];
-      edit_button.className = "edit";
-      edit_button.addEventListener("click", function(e){
-          editData(e.target.id);
-      }, false);
-      item.appendChild(edit_button);
-  
+            }
+        })
       var button = document.createElement("button");
-      button.innerHTML = "Delete";
-      button.id = elem["_id"];
-      button.addEventListener("click", function(e){
+        button.innerHTML = "Delete";
+        button.id = elem["_id"];
+        button.addEventListener("click", function(e){
           deleteData(e.target.id);
-      }, false);
-      item.appendChild(button);
-      document.getElementById(containerDivName).appendChild(item);
+        }, false);
+        item.appendChild(button);
+        document.getElementById("dataContainer").appendChild(item);
     })
-  
-  }
-  
-  function toggleOtherData() {
-    var otherData = document.getElementById("otherDataContainer");
-    if (otherData.style.display == "block") {
-      otherData.style.display = "none";
-    } else {
-      otherData.style.display = "block";
+
+}
+var loadedData = [];
+
+function loadBookEditItem() {
+    localStorage = window.localStorage;
+    editItem = JSON.parse(localStorage.getItem("editItem"));
+    console.log(editItem);
+    document.getElementById("_id").innerHTML = editItem["_id"];
+    document.getElementById("fullname").value = editItem["fullName"];
+    document.getElementById("title").value = editItem["title"]; 
+    document.getElementById("author").value = editItem["author"];   
+    document.getElementById("colour").value = editItem["colour"];
+    document.getElementById("covertype").value = editItem["covertype"];
+    document.getElementById("pagenumber").value = editItem["pagenumber"];
+    document.getElementById("price").value = editItem["price"];
+    document.getElementById("currency").value = editItem["currency"];
+    document.getElementById("language").value = editItem["language"];
+    document.getElementById("orglanguage").value = editItem["orglanguage"];
+    document.getElementById("otherlanguage").value = editItem["otherlanguage"];
+    document.getElementById("edition").value = editItem["edition"];
+    document.getElementById("dimensions").value = editItem["dimensions"];
+    document.getElementById("publisher").value = editItem["publisher"];
+    document.getElementById("pubdate").value = editItem["pubdate"];
+    document.getElementById("age").value = editItem["age"];
+    document.getElementById("orgpubdate").value = editItem["orgpubdate"];
+    document.getElementById("genre").value = editItem["genre"];
+}
+function loadVolleyballEditItem() {
+    localStorage = window.localStorage;
+    editItem = JSON.parse(localStorage.getItem("editItem"));
+    console.log(editItem);
+    document.getElementById("_id").value = editItem["_id"];
+    document.getElementById("fullname").value = editItem["fullname"];
+    document.getElementById("country").value = editItem["country"]; 
+    document.getElementById("gender").value = editItem["gender"];
+    document.getElementById("prefferedteam").value = editItem["prefferedteam"];
+    document.getElementById("player").value = editItem["player"];      
+    document.getElementById("colorw").value = editItem["colorw"];
+    document.getElementById("years").value = editItem["years"];
+}
+
+function editData(id) {
+    var tmp = id.split("edit_");
+    var item_id = tmp[1];
+
+    loadedData.forEach(item => {
+        if ( item._id == item_id) {
+            console.log(item); 
+            localStorage = window.localStorage;
+            localStorage.setItem('editItem', JSON.stringify(item));
+            if (item["project"] == "myVolleyball") {
+            document.location  = "volleyball.html"; 
+            } else {
+            document.location  = "book.html"; 
+            }
+        }
+    })
+}
+
+function deleteData(id) {
+
+    var r = confirm("Are you sure you want to delete the item with the following ID? " + id);
+    if (r == false) {
+        return;
     }
-  }
-  
-  function togglemyhobbyData() {
-    var myhobbyData = document.getElementById("hobbyDataContainer");
-    if (myhobbyData.style.display == "block") {
-      myhobbyData.style.display = "none";
-    } else {
-      myhobbyData.style.display = "block";
+
+    var tmp = {
+        "id": id
     }
-  }
-  
-  function toggleBookData() {
-    var mybookData = document.getElementById("bookDataContainer");
-    if (mybookData.style.display == "block") {
-      mybookData.style.display = "none";
-    } else {
-      bookData.style.display = "block";
-    }
-  }
-  function updateData(e) {
-    e.preventDefault();
-    var updatedBook = {};
-    updatedBook.id = document.getElementById("_id").value;
-    updatedBook.fullname = document.getElementById("fullname").value;
-    updatedBook.title = document.getElementById("title").value;
-    updatedBook.author = document.getElementById("author").value;
-    updatedBook.color = document.getElementById("color").value;
-    updatedBook.covertype = document.getElementById("covertype").value;
-    updatedBook.numberofpages = document.getElementById("pages").value;
-    updatedBook.price = document.getElementById("price").value;
-    updatedBook.currency = document.getElementById("currency").value;
-    updatedBook.language = document.getElementById("language").value;
-    updatedBook.edition = document.getElementById("edition").value;
-    updatedBook.dimensions = document.getElementById("dimensions").value;
-    updatedBook.publisher = document.getElementById("publisher").value;
-    updatedBook.pubdate = document.getElementById("pubdate").value;
-    updatedBook.genre = document.getElementById("genre").value;
-        $.ajax({
+
+    $.ajax({
         type: 'POST',
-        url: "https://cse120-2021-api-arman.herokuapp.com/data/update",
-        data: updatedBookData,
+        url: "https://cse120-2021-api-arman.herokuapp.com/data/delete",
+        data: tmp,
         cache: false,
         dataType : 'json',
         success: function (data) {
-          console.log("success");
+            console.log("success");
+            document.getElementById("div" + id).style.display = "none";
         },
         error: function (xhr) {
-          console.error("Error in post", xhr);
+            console.error("Error in post", xhr);
         },
         complete: function () {
-          console.log("Complete");  
+            console.log("Complete");  
         }
-      });
-  }
-  
-  function hobbyData(e) {
-    e.preventDefault();
-      if(validateFormData() == false) {
-      return;
-    } else {console.log("The current value is", myhobby)
-    }
-    $.ajax({
+    });
+}
+
+function saveData() {
+	var tmp = {
+		"test": "Data"
+	}
+
+  $.ajax({
       type: 'POST',
       url: "https://cse120-2021-api-arman.herokuapp.com/data",
-      data: myhobby,
+      data: tmp,
+      cache: false,
+      dataType : 'json',
+      success: function (data) {
+        console.log("success");
+      },
+      error: function (xhr) {
+          console.error("Error in post", xhr);
+      },
+      complete: function () {
+          console.log("Complete");  
+      }
+  });
+}
+
+function loadExistingData() {
+  myVolleyballData = [];
+  myBookData = [];
+  otherData = [];
+  $.ajax({
+      type : "GET",
+      url : "https://cse120-2021-api-arman.herokuapp.com/data",
+      dataType : "json",
+      success : function(data) {
+        loadedData = data.data;
+        data.data.forEach(elem => {
+          if (elem["owner"] == "Arman Miskaryan") {
+            if (elem["project"] == "myVolleyball") {
+              myVolleyballData.push(elem);
+            } else {
+              myBookData.push(elem);
+            }
+          } else {
+            otherData.push(elem);
+          }
+        })
+        displayData(myVolleyballData, "volleyballDataContainer");
+        displayData(myBookData, "bookDataContainer");
+     
+      },
+      error : function(data) {
+          console.log("Error")
+      }
+  });
+}
+
+function displayData(data, containerDivName) {
+  document.getElementById(containerDivName).innerHTML = "";
+  data.forEach(elem => {
+    var item = document.createElement("div");
+    item.id = "div" + elem["_id"];
+    item.className = "item";
+    if (Object.keys(elem).length == 1) {
+      var span = document.createElement("span");
+      span.innerHTML = "<i>Empty Element with autogenerated ID: </i>" + elem["_id"];
+      item.appendChild(span);
+    }
+    Object.keys(elem).forEach(key => {
+      if (key != "_id") {
+        var span = document.createElement("span");
+
+        var b = document.createElement("b");
+        b.innerHTML = key + ": ";
+        span.appendChild(b);
+        
+        span.className = "item";
+        if (elem[key]) {
+            span.innerHTML += elem[key];
+        } else {
+            var span1 = document.createElement("span");
+            span1.className = "undefined";
+            span1.innerHTML = "N/A";
+            span.appendChild(span1)
+        }
+        item.appendChild(span);
+
+        var br = document.createElement("br");
+        item.appendChild(br);
+      }
+    })
+    var edit_button = document.createElement("button");
+    edit_button.innerHTML = "Edit";
+    edit_button.id = "edit_" + elem["_id"];
+    edit_button.className = "edit";
+    edit_button.addEventListener("click", function(e){
+        editData(e.target.id);
+    }, false);
+    item.appendChild(edit_button);
+
+    var button = document.createElement("button");
+    button.innerHTML = "Delete";
+    button.id = elem["_id"];
+    button.addEventListener("click", function(e){
+        deleteData(e.target.id);
+    }, false);
+    item.appendChild(button);
+    document.getElementById(containerDivName).appendChild(item);
+  })
+
+}
+
+function toggleOtherData() {
+  var otherData = document.getElementById("otherDataContainer");
+  if (otherData.style.display == "block") {
+    otherData.style.display = "none";
+  } else {
+    otherData.style.display = "block";
+  }
+}
+
+function toggleVolleyballData() {
+  var myVolleyballData = document.getElementById("volleyballDataContainer");
+  if (myvolleyballData.style.display == "block") {
+    myVolleyballData.style.display = "none";
+  } else {
+    myVolleyballData.style.display = "block";
+  }
+}
+
+function toggleBookData() {
+  var bookData = document.getElementById("bookDataContainer");
+  if (bookData.style.display == "block") {
+    bookData.style.display = "none";
+  } else {
+    bookData.style.display = "block";
+  }
+}
+function updateData(e) {
+  e.preventDefault();
+  var updatedBook = {};
+  updatedBook.id = document.getElementById("_id").value;
+  updatedBook.fullname = document.getElementById("fullname").value;
+  updatedBook.author = document.getElementById("author").value;
+  updatedBook.colour = document.getElementById("colour").value;
+  updatedBook.covertype = document.getElementById("covertype").value;
+  updatedBook.numberofpages = document.getElementById("numberofpages").value;
+  updatedBook.price = document.getElementById("price").value;
+  updatedBook.currency = document.getElementById("currency").value;
+  updatedBook.language = document.getElementById("language").value;
+  updatedBook.edition = document.getElementById("edition").value;
+  updatedBook.dimensions = document.getElementById("dimensions").value;
+  updatedBook.publisher = document.getElementById("publisher").value;
+  updatedBook.publishingyear = document.getElementById("publishingyear").value;
+  updatedBook.originalpubdate = document.getElementById("originalpubdate").value;
+  updatedBook.genre = document.getElementById("genre").value;
+  
+ 
+
+      $.ajax({
+      type: 'POST',
+      url: "https://cse120-2021-api-arman.herokuapp.com/data/update",
+      data: updatedBook,
       cache: false,
       dataType : 'json',
       success: function (data) {
@@ -482,52 +475,32 @@ var myhobby={
       }
     });
   }
-  
-  function saveData() {
-      var tmp = {
-          "test": "Data"
-      }
+function UpdateVolleyballData(e) {
+  e.preventDefault();
+  var updatedVolleyball = {};
+  updatedVolleyball.id = document.getElementById("_id").value;
+  updatedVolleyball.fullname = document.getElementById("fullname").value;
+  updatedVolleyball.country = document.getElementById("country").value;
+  updatedVolleyball.gender = document.getElementById("gender").value;
+  updatedVolleyball.prefferedteam = document.getElementById("prefferedteam").value;
+   updatedVolleyball.player = document.getElementById("player").value;
+  updatedVolleyball.colorw = document.getElementById("colorw").value;
+  updatedVolleyball.years = document.getElementById("years").value;
   
       $.ajax({
-          type: 'POST',
-          url: "https://cse120-2021-api-arman.herokuapp.com/data",
-          data: tmp,
-          cache: false,
-          dataType : 'json',
-          success: function (data) {
-              console.log("success");
-          },
-          error: function (xhr) {
-              console.error("Error in post", xhr);
-          },
-          complete: function () {
-              console.log("Complete");  
-          }
-      });
-  }
-  
-  function loadExistingData() {
-      var existingData = [];
-    $.ajax({
-      type : "GET",
-      url : "https://cse120-2021-api-arman.herokuapp.com/data",
-      dataType : "json",
-      success : function(data) {
-      console.log("success", data);
-      existingData = data;
-      displayData(existingData.data);
+      type: 'POST',
+      url: "/data/update",
+      data: updatedVolleyball,
+      cache: false,
+      dataType : 'json',
+      success: function (data) {
+        console.log("success");
       },
-      error : function(data) {
-          console.log("Error")
+      error: function (xhr) {
+        console.error("Error in post", xhr);
+      },
+      complete: function () {
+        console.log("Complete");  
       }
     });
-  }
-  
-  function displayData(existingData) {
-    document.getElementById("existingData").innerHTML = "<ul>";
-    for (var i = 0; i < existingData.length; i++) {
-      currentBook = existingData[i];
-      document.getElementById("existingData").innerHTML += "<li><i>" + currentBook.fullname + "</li> : <b>" + currentBook.title + "</b></li>";
-    }
-    document.getElementById("existingData").innerHTML += "</ul>" 
-  }
+}
