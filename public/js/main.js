@@ -33,7 +33,7 @@ function editData(id) {
     })
 }
 
-function loadhobbyEditItem() {
+function loadVolleyballEditItem() {
     localStorage = window.localStorage;
     editItem = JSON.parse(localStorage.getItem("editItem"));
     console.log(editItem);
@@ -55,7 +55,7 @@ function editData(id) {
             console.log(item); 
             localStorage = window.localStorage;
             localStorage.setItem('editItem', JSON.stringify(item));
-            if (item.project == "myhobby") {
+            if (item.project == "hobby") {
               document.location  = "volleyball.html";
             } else {
               document.location  = "book.html";
@@ -141,7 +141,7 @@ function loadExistingData() {
             otherData.push(elem);
           }
         })
-        displayData(myhobbyData, "hobbyDataContainer");
+        displayData(myhobbyData, "volleyballDataContainer");
         displayData(mybookData, "bookDataContainer");
         displayData(otherData, "otherDataContainer");
       },
@@ -205,7 +205,7 @@ function displayData(data, containerDivName) {
         document.getElementById(containerDivName).appendChild(item);
     })
 
-    document.querySelectorAll("#hobbyDataContainer div.item").forEach(div => {
+    document.querySelectorAll("#volleyballDataContainer div.item").forEach(div => {
           div.addEventListener("click", function(e){
           if (this.style.height == "auto") {
           this.style.height = "30px";
@@ -228,7 +228,7 @@ function displayData(data, containerDivName) {
 
 
  
- function updatehobbyData(e) {
+ function updateVolleyballData(e) {
       e.preventDefault();
       var updatedColoring = {};
   updatedColoring.id = document.getElementById("_id").value;
@@ -244,7 +244,7 @@ function displayData(data, containerDivName) {
  $.ajax({
       type: 'POST',
       url: "https://cse120-2021-api-arman.herokuapp.com",
-      data: updatedhobby,
+      data: updatedVolleyball,
       cache: false,
       dataType : 'json',
       success: function (data) {
@@ -260,7 +260,7 @@ function displayData(data, containerDivName) {
   
 }
  
-function updateBookDataChenges(e) {
+function updateDataChenges(e) {
       e.preventDefault();
       var updatedBook = {};
   updatedBook.id = document.getElementById("_id").value;
