@@ -147,7 +147,7 @@ function handleAgeResChange (){
 }
 function SaveData(e){
   e.preventDefault();
-  console.log(mycode)
+  console.log(mycode);
 
   $.ajax({
     type: 'POST',
