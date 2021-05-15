@@ -247,7 +247,7 @@ function loadVolleyballEditItem() {
     document.getElementById("_id").value = editItem["_id"];
     document.getElementById("fullname").value = editItem["fullname"];
     document.getElementById("country").value = editItem["country"]; 
-    document.getElementById("gender").value = editItem["gender"];
+    //document.getElementById("gender").value = editItem["gender"];
     document.getElementById("prefferedteam").value = editItem["prefferedteam"];
     document.getElementById("player").value = editItem["player"];      
     document.getElementById("colorw").value = editItem["colorw"];
