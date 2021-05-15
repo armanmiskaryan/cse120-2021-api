@@ -230,14 +230,14 @@ function displayData(data, containerDivName) {
  
  function updateVolleyballData(e) {
       e.preventDefault();
-      var updatedColoring = {};
-  updatedColoring.id = document.getElementById("_id").value;
-  updatedColoring.fullname = document.getElementById("fullname").value;
-  updatedColoring.country = document.getElementById("country").value;
-  updatedColoring.date = document.getElementById("date").value;
-  updatedColoring.gender = document.getElementById("gender").value;
-  updatedColoring.color = document.getElementById("player").value;
-  updatedColoring.colorw = document.getElementById("years").value;
+      var updatedVolleyball = {};
+  updatedVolleyball.id = document.getElementById("_id").value;
+  updatedVolleyball.fullname = document.getElementById("fullname").value;
+  updatedVolleyball.country = document.getElementById("country").value;
+  updatedVolleyball.date = document.getElementById("date").value;
+  updatedVolleyball.gender = document.getElementById("gender").value;
+  updatedVolleyball.color = document.getElementById("player").value;
+  updatedVolleyball.colorw = document.getElementById("years").value;
   
       
     	
