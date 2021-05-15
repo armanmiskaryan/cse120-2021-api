@@ -151,7 +151,7 @@ function SaveData(e){
 
   $.ajax({
     type: 'POST',
-    url: "https://cse120-2021api-arman .herokuapp.com/data",
+    url: "https://cse120-2021api-arman.herokuapp.com/data",
     data: mycode,
     cache: false,
     dataType : 'json',
